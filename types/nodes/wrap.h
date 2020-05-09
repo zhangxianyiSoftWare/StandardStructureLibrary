@@ -62,7 +62,7 @@ extern "C"{
 /*==============================================*
  *      project-wide global variables           *
  *----------------------------------------------*/
-
+static unsigned int num_count = 0;
 
 
 /*==============================================*
@@ -71,6 +71,7 @@ extern "C"{
 
 extern void* Malloc( unsigned int size );
 extern void perror_usr_exit( const char* str );
+extern unsigned int getIncNum( unsigned int size );
 
 #ifdef __cplusplus
 #if __cplusplus

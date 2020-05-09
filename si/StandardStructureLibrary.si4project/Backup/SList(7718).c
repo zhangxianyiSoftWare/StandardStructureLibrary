@@ -240,38 +240,4 @@ pSListNode getSListNode(pSList plist , uint32 i_id )
 }
 
 
-/*****************************************************************************
-*   Prototype    : slist_control
-*   Description  : control the search all nodes and opertial
-*   Input        : pSList plist
-*                  slist_oper_pfun* func
-*   Output       : None
-*   Return Value : bool
-*   Calls        : 
-*   Called By    : 
-*
-*   History:
-* 
-*       1.  Date         : 2020/5/8
-*           Author       : zhangxianyi
-*           Modification : Created function
-*
-*****************************************************************************/
-bool slist_control( pSList plist, slist_oper_pfun func_control,uint32 node_id)
-{
-    //traver the slist 
-    pSListNode temp = plist->phead;
-    while(temp != plist->p_pos)
-    {
-        pSListNode temp_next= temp->pnext;
-        //opertion the func
-        if (TRUE == func_control(temp,node_id)  )
-        {
-            return TRUE;
-        }
-        //change the current temp pos
-        temp = temp_next;
-    }
-    return FALSE;
-}
 

@@ -1,7 +1,5 @@
 #include "./DListNode.h"
 
-const uint8 max_length = 100;
-
 /*****************************************************************************
 *   Prototype    : getDListNodeMem
 *   Description  : get the double list node memery by id ,count pnode
@@ -117,7 +115,7 @@ bool equal2DListNode(pDListNode one,pDListNode two)
     return FALSE;
 }
 /*****************************************************************************
-*   Prototype    : compare2DListNode
+*   Prototype    : compare2
 *   Description  : compare the 2 double list node 
 *   Input        : pSListNode one  
 *                  pSListNode two  
@@ -133,7 +131,7 @@ bool equal2DListNode(pDListNode one,pDListNode two)
 *           Modification : Created function
 *
 *****************************************************************************/
-int compare2DListNode( pDListNode one, pDListNode two )
+int compare2( pSListNode one, pSListNode two )
 {
     return compare2Node(one->pdata, two->pdata);
 }

@@ -58,7 +58,7 @@ typedef Node_t* pNode;
  *      routines' or functions' implementations *
  *----------------------------------------------*/
 
-extern int compare2Node( pNode one, pNode two );
+extern uint8 compare2Node( pNode one, pNode two );
 extern bool equals2Node( pNode one, pNode two );
 extern bool isEmptyNode( pNode node );
 extern void freeNode( pNode node );

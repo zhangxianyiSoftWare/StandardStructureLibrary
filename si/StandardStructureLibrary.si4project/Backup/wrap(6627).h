@@ -3,24 +3,24 @@
 *  Copyright (C), 2001-2005, Huawei Tech. Co., Ltd.
 *
 *******************************************************************************
-*  File Name     : Node.h
+*  File Name     : wrap.h
 *  Version       : Initial Draft
 *  Author        : zhangxianyi
-*  Created       : 2020/5/1
+*  Created       : 2020/5/2
 *  Last Modified :
-*  Description   : Node.c header file
+*  Description   : wrap.c header file
 *  Function List :
 *
 *
 *  History:
 * 
-*       1.  Date         : 2020/5/1
+*       1.  Date         : 2020/5/2
 *           Author       : zhangxianyi
 *           Modification : Created file
 *
 ******************************************************************************/
-#ifndef __NODE_H__
-#define __NODE_H__
+#ifndef __WRAP_H__
+#define __WRAP_H__
 
 
 #ifdef __cplusplus
@@ -33,38 +33,45 @@ extern "C"{
 /*==============================================*
  *      include header files                    *
  *----------------------------------------------*/
-#include "./public.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 /*==============================================*
  *      constants or macros define              *
  *----------------------------------------------*/
-typedef struct _T_Node
-{
-    uint32  id;
-    uint32  count;
-    void*   pnode;
-}Node_t;
+#define DEBUG
 
-typedef Node_t* pNode; 
+//#define REALSE
+
+#ifdef DEBUG
+#define D_TRACE printf
+#else
+#define D_TRACE //
+#endif
+
+#ifdef REALSE
+#define R_TRACE printf
+#else
+#define R_TRACE //
+#endif
+
+
 
 /*==============================================*
  *      project-wide global variables           *
  *----------------------------------------------*/
+static uint32 num_count;
 
 
 /*==============================================*
  *      routines' or functions' implementations *
  *----------------------------------------------*/
 
-extern int compare2Node( pNode one, pNode two );
-extern bool equals2Node( pNode one, pNode two );
-extern bool isEmptyNode( pNode node );
-extern void freeNode( pNode node );
-extern pNode getNodeMem( uint32 i_id, uint32 i_count, void* args );
-extern void setNode(pNode p_node, uint32 id, uint32 count, void* node );
-
+extern void* Malloc( unsigned int size );
+extern void perror_usr_exit( const char* str );
+extern uint32 getIncNum( uint32 size );
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -73,4 +80,4 @@ extern void setNode(pNode p_node, uint32 id, uint32 count, void* node );
 #endif /* __cplusplus */
 
 
-#endif /* __NODE_H__ */
+#endif /* __WRAP_H__ */

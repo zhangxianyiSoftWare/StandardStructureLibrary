@@ -1,7 +1,7 @@
 #include "./SListNode.h"
 
 /*****************************************************************************
-*   Prototype    : compare2SListNode
+*   Prototype    : compare2
 *   Description  : compare two list node 
 *   Input        : pSListNode one
 *                  pSListNode two
@@ -17,7 +17,7 @@
 *           Modification : Created function
 *
 *****************************************************************************/
-int compare2SListNode( pSListNode one, pSListNode two )
+int compare2( pSListNode one, pSListNode two )
 {
     //return bigger mean one id > two id
     return compare2Node(one->pdata, two->pdata);

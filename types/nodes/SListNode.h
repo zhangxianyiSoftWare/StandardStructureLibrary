@@ -60,11 +60,12 @@ typedef SListNode_t*   pSListNode;
  *      routines' or functions' implementations *
  *----------------------------------------------*/
 
-extern int compare2( pSListNode one, pSListNode two );
-extern bool emptyListNode( pSListNode p_l_node );
-extern void setListNode(pSListNode p_l_node, pNode data);
-extern bool equal2ListNodes( pSListNode one, pSListNode two );
-extern pSListNode getListNodeMem( pNode data );
+extern int compare2SListNode( pSListNode one, pSListNode two );
+extern bool emptySListNode( pSListNode p_l_node );
+extern void setSListNode(pSListNode p_l_node, pNode data);
+extern bool equal2SListNodes( pSListNode one, pSListNode two );
+extern pSListNode getSListNodeMem2( uint32 id, uint32 count, void* pnode );
+extern void freeSListNode( pSListNode list_node );
 
 #ifdef __cplusplus
 #if __cplusplus

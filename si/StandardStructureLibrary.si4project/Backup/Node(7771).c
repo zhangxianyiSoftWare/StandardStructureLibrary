@@ -31,7 +31,7 @@ bool equals2Node( pNode one, pNode two )
 *   Input        : pNode one
 *                  pNode two
 *   Output       : None
-*   Return Value : int
+*   Return Value : uint8
 *   Calls        : 
 *   Called By    : 
 *
@@ -42,7 +42,7 @@ bool equals2Node( pNode one, pNode two )
 *           Modification : Created function
 *
 *****************************************************************************/
-int compare2Node( pNode one, pNode two )
+uint8 compare2Node( pNode one, pNode two )
 {
     if( TRUE == equals2Node(one,two) )
     {

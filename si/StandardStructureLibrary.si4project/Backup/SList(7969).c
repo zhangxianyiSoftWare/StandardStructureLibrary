@@ -64,7 +64,7 @@ void slist_destory( pSList plist )
     D_TRACE("single list destory start\n");
     if( TRUE == slist_empty(plist) )
     {
-        freeSListNode(plist->phead);
+        freeListNode(plist->phead);
         free(plist);
         D_TRACE("single list destory end\n");
         return;
@@ -75,15 +75,15 @@ void slist_destory( pSList plist )
     {
         pSListNode temp_next= temp->pnext;
         //destory a list node and free it
-        freeSListNode(temp);
+        freeListNode(temp);
         //change the current temp pos
         temp = temp_next;
     }
     D_TRACE("single list many nodes had free it\n");
     //realse start and end node
-    freeSListNode(plist->phead);
+    freeListNode(plist->phead);
     plist->phead = NULL;
-    freeSListNode(plist->p_pos);
+    freeListNode(plist->p_pos);
     plist->p_pos = NULL;
     //realse list  and clean zero
     memset(plist,0,sizeof(SList_t));
@@ -176,14 +176,14 @@ bool slist_del(pSList plist, pSListNode del_node )
     //save the del_node`s front node
     pSListNode p_temp= plist->phead;
     //if search a node but the list end
-    while( TRUE != equal2SListNodes(p_temp, plist->p_pos))
+    while( TRUE != equal2ListNodes(p_temp, plist->p_pos))
     {
         //if not search the list end and find the del node
-        if(TRUE == equal2SListNodes(p_temp->pnext, del_node))
+        if(TRUE == equal2ListNodes(p_temp->pnext, del_node))
         {
             //save the delnode`s next node
             pSListNode temp_next = del_node->pnext;
-            freeSListNode(del_node);
+            freeListNode(del_node);
             //the del_node`s front node  pointed the del_node`s next node
             p_temp->pnext = temp_next;
             D_TRACE("out node succ\n");
@@ -198,7 +198,7 @@ bool slist_del(pSList plist, pSListNode del_node )
 
 
 /*****************************************************************************
-*   Prototype    : getSListNode
+*   Prototype    : getListNode
 *   Description  : get a list node by data id
 *   Input        : pSList plist
 *                  uint32 id
@@ -214,7 +214,7 @@ bool slist_del(pSList plist, pSListNode del_node )
 *           Modification : Created function
 *
 *****************************************************************************/
-pSListNode getSListNode(pSList plist , uint32 i_id )
+pSListNode getListNode(pSList plist , uint32 i_id )
 {
     //temp pointer 
     pSListNode node= plist->phead->pnext;
@@ -225,7 +225,7 @@ pSListNode getSListNode(pSList plist , uint32 i_id )
         return node;
     }
     //if search a node but the list end
-    while( TRUE != equal2SListNodes(node, plist->p_pos) )
+    while( TRUE != equal2ListNodes(node, plist->p_pos) )
     {
         //search a same node
         if(node->pdata->id == i_id)
@@ -240,38 +240,4 @@ pSListNode getSListNode(pSList plist , uint32 i_id )
 }
 
 
-/*****************************************************************************
-*   Prototype    : slist_control
-*   Description  : control the search all nodes and opertial
-*   Input        : pSList plist
-*                  slist_oper_pfun* func
-*   Output       : None
-*   Return Value : bool
-*   Calls        : 
-*   Called By    : 
-*
-*   History:
-* 
-*       1.  Date         : 2020/5/8
-*           Author       : zhangxianyi
-*           Modification : Created function
-*
-*****************************************************************************/
-bool slist_control( pSList plist, slist_oper_pfun func_control,uint32 node_id)
-{
-    //traver the slist 
-    pSListNode temp = plist->phead;
-    while(temp != plist->p_pos)
-    {
-        pSListNode temp_next= temp->pnext;
-        //opertion the func
-        if (TRUE == func_control(temp,node_id)  )
-        {
-            return TRUE;
-        }
-        //change the current temp pos
-        temp = temp_next;
-    }
-    return FALSE;
-}
 

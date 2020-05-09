@@ -15,15 +15,13 @@ bool printItem2(pSListNode temp,uint32 node_id)
     }
     else if(temp->pnext->pdata->id == node_id)
     {
-        D_TRACE("print a task data-> %d\n",((pTask)temp->pnext->pdata->pnode)->task_id);
-        return TRUE;
+        D_TRACE("main data-> %d\n",((pTask)temp->pdata->pnode)->task_id);
     }
 }
 
 bool printItemAll(pSListNode temp,uint32 u_id)
 {
-    D_TRACE("print all task data-> %d\n",((pTask)temp->pnext->pdata->pnode)->task_id);
-    return FALSE;
+    D_TRACE("main data-> %d\n",((pTask)temp->pdata->pnode)->task_id);
 }
 
 int main(int argc,char* argv[])
@@ -47,9 +45,10 @@ int main(int argc,char* argv[])
     slist_add(plist, three);
 
     slist_control(plist, printItem2, 3);
+    D_TRACE("print all list node data  start\n");  
+    slist_control(plist, printItemAll, 0);
     D_TRACE("plist del a list node start\n");    
     slist_del(plist, two);
-    D_TRACE("print all list node data  start\n");
     slist_control(plist, printItemAll, 0);
     slist_destory(plist);
     D_TRACE("main destory plist suncc\n");    

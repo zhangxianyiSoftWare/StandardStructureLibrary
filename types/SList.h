@@ -53,7 +53,8 @@ typedef SList_t*   pSList;
 /*==============================================*
  *      project-wide global variables           *
  *----------------------------------------------*/
-
+//declare a func pointer and control the list
+typedef bool (* slist_oper_pfun)(pSListNode temp,uint32 node_id);
 
 
 /*==============================================*
@@ -66,6 +67,7 @@ extern pSList slist_create( );
 extern bool slist_del(pSList plist, pSListNode temp );
 extern void slist_destory( pSList plist );
 extern bool slist_empty( pSList plist );
+extern bool slist_control( pSList plist, slist_oper_pfun func_control,uint32 node_id);
 
 #ifdef __cplusplus
 #if __cplusplus

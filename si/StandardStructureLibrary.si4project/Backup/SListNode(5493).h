@@ -3,24 +3,24 @@
 *  Copyright (C), 2001-2005, Huawei Tech. Co., Ltd.
 *
 *******************************************************************************
-*  File Name     : Node.h
+*  File Name     : SListNode.h
 *  Version       : Initial Draft
 *  Author        : zhangxianyi
-*  Created       : 2020/5/1
+*  Created       : 2020/5/2
 *  Last Modified :
-*  Description   : Node.c header file
+*  Description   : SListNode.c header file
 *  Function List :
 *
 *
 *  History:
 * 
-*       1.  Date         : 2020/5/1
+*       1.  Date         : 2020/5/2
 *           Author       : zhangxianyi
 *           Modification : Created file
 *
 ******************************************************************************/
-#ifndef __NODE_H__
-#define __NODE_H__
+#ifndef __SLISTNODE_H__
+#define __SLISTNODE_H__
 
 
 #ifdef __cplusplus
@@ -33,38 +33,39 @@ extern "C"{
 /*==============================================*
  *      include header files                    *
  *----------------------------------------------*/
-#include "./public.h"
-#include <stdio.h>
+#include "./base/Node.h"
+#include "./wrap.h"
 
 
 /*==============================================*
  *      constants or macros define              *
  *----------------------------------------------*/
-typedef struct _T_Node
-{
-    uint32  id;
-    uint32  count;
-    void*   pnode;
-}Node_t;
 
-typedef Node_t* pNode; 
+typedef struct _T_LinkListNode
+{
+    pNode                      pdata;
+    struct _T_LinkListNode*    pnext;
+}SListNode_t;
+
+typedef SListNode_t*   pSListNode;
+
 
 /*==============================================*
  *      project-wide global variables           *
  *----------------------------------------------*/
 
 
+
 /*==============================================*
  *      routines' or functions' implementations *
  *----------------------------------------------*/
 
-extern int compare2Node( pNode one, pNode two );
-extern bool equals2Node( pNode one, pNode two );
-extern bool isEmptyNode( pNode node );
-extern void freeNode( pNode node );
-extern pNode getNodeMem( uint32 i_id, uint32 i_count, void* args );
-extern void setNode(pNode p_node, uint32 id, uint32 count, void* node );
-
+extern int compare2( pSListNode one, pSListNode two );
+extern bool emptySListNode( pSListNode p_l_node );
+extern void setSListNode(pSListNode p_l_node, pNode data);
+extern bool equal2SListNodes( pSListNode one, pSListNode two );
+extern pSListNode getSListNodeMem2( uint32 id, uint32 count, void* pnode );
+extern void freeSListNode( pSListNode list_node );
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -73,4 +74,4 @@ extern void setNode(pNode p_node, uint32 id, uint32 count, void* node );
 #endif /* __cplusplus */
 
 
-#endif /* __NODE_H__ */
+#endif /* __SLISTNODE_H__ */

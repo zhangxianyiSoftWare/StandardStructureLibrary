@@ -1,5 +1,7 @@
 #include "./wrap.h"
 
+num_count = 0;
+
 /*****************************************************************************
 *   Prototype    : perror_usr_exit
 *   Description  : perror with user string
@@ -57,9 +59,9 @@ void* Malloc( unsigned int size )
 /*****************************************************************************
 *   Prototype    : getIncNum
 *   Description  : get a range size the increase number
-*   Input        : unsigned int size
+*   Input        : uint32 size
 *   Output       : None
-*   Return Value : unsigned int
+*   Return Value : uint32
 *   Calls        : 
 *   Called By    : 
 *
@@ -70,9 +72,8 @@ void* Malloc( unsigned int size )
 *           Modification : Created function
 *
 *****************************************************************************/
-unsigned int getIncNum(unsigned int size )
+uint32 getIncNum( uint32 size )
 {
-    static unsigned int num_count = 0;
     if(num_count <= size)
     {
         return num_count++;
