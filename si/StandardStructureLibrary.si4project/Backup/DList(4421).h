@@ -3,24 +3,24 @@
 *  Copyright (C), 2001-2005, Huawei Tech. Co., Ltd.
 *
 *******************************************************************************
-*  File Name     : wrap.h
+*  File Name     : DList.h
 *  Version       : Initial Draft
 *  Author        : zhangxianyi
-*  Created       : 2020/5/2
+*  Created       : 2020/5/9
 *  Last Modified :
-*  Description   : wrap.c header file
+*  Description   : DList.c header file
 *  Function List :
 *
 *
 *  History:
 * 
-*       1.  Date         : 2020/5/2
+*       1.  Date         : 2020/5/9
 *           Author       : zhangxianyi
 *           Modification : Created file
 *
 ******************************************************************************/
-#ifndef __WRAP_H__
-#define __WRAP_H__
+#ifndef __DLIST_H__
+#define __DLIST_H__
 
 
 #ifdef __cplusplus
@@ -33,30 +33,13 @@ extern "C"{
 /*==============================================*
  *      include header files                    *
  *----------------------------------------------*/
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+
+
 
 
 /*==============================================*
  *      constants or macros define              *
  *----------------------------------------------*/
-#define DEBUG
-
-//#define REALSE
-
-#ifdef DEBUG
-#define D_TRACE printf
-#else
-#define D_TRACE //
-#endif
-
-#ifdef REALSE
-#define R_TRACE printf
-#else
-#define R_TRACE //
-#endif
-
 
 
 /*==============================================*
@@ -69,9 +52,12 @@ extern "C"{
  *      routines' or functions' implementations *
  *----------------------------------------------*/
 
-extern void* Malloc( unsigned int size );
-extern void perror_usr_exit( const char* str );
-extern unsigned int getIncNum( unsigned int size );
+extern bool dlist_add( pDList pdlist, pDListNode node );
+extern bool dlist_control( pDList pdlist,dlist_oper_pfun func_control,uint32 node_id );
+extern pDList  dlist_create(  );
+extern bool dlist_del( pDList pdlist, pDListNode del_node );
+extern void dlist_destory( pDList pdlist );
+extern bool dlist_empty( pDList pdlist );
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -80,4 +66,4 @@ extern unsigned int getIncNum( unsigned int size );
 #endif /* __cplusplus */
 
 
-#endif /* __WRAP_H__ */
+#endif /* __DLIST_H__ */

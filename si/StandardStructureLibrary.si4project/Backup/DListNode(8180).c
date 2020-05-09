@@ -75,11 +75,13 @@ bool emptyDListNode( pDListNode i_node )
 *****************************************************************************/
 void freeDListNode( pDListNode i_dn )
 {
+    if(emptyDListNode(i_dn))
+    {
+        return;
+    }
     //free the pNode
     freeNode(i_dn->pdata);
     i_dn->pdata = NULL;
-    i_dn->pnext = NULL;
-    i_dn->pfront = NULL;
     //free the double list  node
     free(i_dn);
 }

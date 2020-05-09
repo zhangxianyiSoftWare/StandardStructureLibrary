@@ -187,7 +187,6 @@ bool slist_del(pSList plist, pSListNode del_node )
             //the del_node`s front node  pointed the del_node`s next node
             p_temp->pnext = temp_next;
             D_TRACE("out node succ\n");
-            plist->list_length --;
             return TRUE;
         }
         p_temp = p_temp->pnext;

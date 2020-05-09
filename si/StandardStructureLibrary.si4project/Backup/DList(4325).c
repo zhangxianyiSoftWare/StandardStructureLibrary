@@ -34,10 +34,10 @@ pDList  dlist_create(  )
         
         //assign the list length
         list->list_length = 0;
-        D_TRACE("double list create succ\n");
+        D_TRACE("single list create succ\n");
         return list;
     }while(FALSE);
-    D_TRACE("double list create failed");
+    D_TRACE("single list create failed");
     dlist_destory(list);
 }
 
@@ -194,7 +194,6 @@ bool dlist_del( pDList pdlist, pDListNode del_node )
             p_temp->pnext = temp_next;
             temp_next->pfront = p_temp;
             D_TRACE("out node succ\n");
-            pdlist->list_length --;
             return TRUE;
         }
         p_temp = p_temp->pnext;
@@ -237,40 +236,4 @@ bool dlist_control( pDList pdlist,dlist_oper_pfun func_control,uint32 node_id )
         temp = temp_next;
     }
     return FALSE;
-}
-
-/*****************************************************************************
-*   Prototype    : getDListNode
-*   Description  : get a double list node by nid
-*   Input        : pDList pdlist
-*                  uint32 nid
-*   Output       : None
-*   Return Value : pDListNode
-*   Calls        : 
-*   Called By    : 
-*
-*   History:
-* 
-*       1.  Date         : 2020/5/9
-*           Author       : zhangxianyi
-*           Modification : Created function
-*
-*****************************************************************************/
-pDListNode getDListNode( pDList pdlist, uint32 nid )
-{
-    //temp pointer 
-    pDListNode node= pdlist->phead;
-    //if search a node but the list end
-    while( TRUE != equal2SListNodes(node, pdlist->p_pos) )
-    {
-        //search a same node
-        if(node->pnext->pdata->id == nid)
-        {
-            D_TRACE("for each search node succ\n");
-            return node->pnext;
-        }
-        node = node->pnext;
-    }
-    D_TRACE("search node failed \n");
-    return NULL;
 }
