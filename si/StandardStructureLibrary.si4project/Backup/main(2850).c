@@ -23,7 +23,7 @@ bool printItem2(pQueueNode temp,uint32 node_id)
 
 bool printItemAll(pQueueNode temp,uint32 u_id)
 {
-    D_TRACE("print all task data-> %d\n",((pTask)temp->pdata->pnode)->task_id);
+    D_TRACE("print all task data-> %d\n",((pTask)temp->pnext->pdata->pnode)->task_id);
     return FALSE;
 }
 
@@ -54,10 +54,12 @@ int main(int argc,char* argv[])
 
     squeue_control(pqueue, printItem2, 3);
     D_TRACE("plist del a list node start\n");    
-    squeue_pop(pqueue);
+    pQueueNode node = squeue_pop(pqueue);
+    D_TRACE("print pop node start\n");    
+    printItem(node);
+    freeSListNode(node);
     D_TRACE("print all list node data  start\n");
-    squeue_control(pqueue, printItem2, 2);
-    squeue_control(pqueue, printItem2, 3);
+    squeue_control(pqueue, printItemAll, 0);
     squeue_destory(pqueue);
     D_TRACE("main destory plist suncc\n");    
     return 0;
