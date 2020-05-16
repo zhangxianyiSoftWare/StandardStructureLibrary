@@ -43,9 +43,9 @@ int main(int argc,char* argv[])
     task2->task_id = 888;
     task3->task_id = 222;
     
-    pDListNode one = getDListNodeMem(1, 1, task);
-    pDListNode two = getDListNodeMem(2, 1, task2);
-    pDListNode three = getDListNodeMem(3, 1, task3);
+    pDListNode one = getDListNodeMem(1, sizeof(Task_t), task);
+    pDListNode two = getDListNodeMem(2, sizeof(Task_t), task2);
+    pDListNode three = getDListNodeMem(3, sizeof(Task_t), task3);
     
     dlist_add(plist, one);
     dlist_add(plist, two);

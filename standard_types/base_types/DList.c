@@ -259,15 +259,15 @@ bool dlist_control( pDList pdlist,dlist_oper_pfun func_control,uint32 node_id )
 pDListNode getDListNode( pDList pdlist, uint32 nid )
 {
     //temp pointer 
-    pDListNode node= pdlist->phead;
+    pDListNode node= pdlist->phead->pnext;
     //if search a node but the list end
-    while( TRUE != equal2SListNodes(node, pdlist->p_pos) )
+    while( TRUE != equal2DListNode(node, pdlist->p_pos) )
     {
         //search a same node
-        if(node->pnext->pdata->id == nid)
+        if(node->pdata->id == nid)
         {
             D_TRACE("for each search node succ\n");
-            return node->pnext;
+            return node;
         }
         node = node->pnext;
     }

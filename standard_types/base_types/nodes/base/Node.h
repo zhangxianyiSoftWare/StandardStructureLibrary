@@ -45,7 +45,9 @@ extern "C"{
 typedef struct _T_Node
 {
     uint32  id;
-    uint32  count;
+    /* BEGIN: Added for PN:1 by zhangxianyi, 2020/5/16 */
+    uint32  size;
+    /* END:   Added for PN:1 by zhangxianyi, 2020/5/16 */
     void*   pnode;
 }Node_t;
 
@@ -64,9 +66,15 @@ extern int compare2Node( pNode one, pNode two );
 extern bool equals2Node( pNode one, pNode two );
 extern bool isEmptyNode( pNode node );
 extern void freeNode( pNode node );
-extern pNode getNodeMem( uint32 i_id, uint32 i_count, void* args );
-extern void setNode(pNode p_node, uint32 id, uint32 count, void* node );
-extern pNode deepCopyNode(pNode i_node,uint32 i_pNode_data_size);
+
+/* BEGIN: Modified for PN:1 by zhangxianyi, 2020/5/16 */
+
+extern pNode getNodeMem( uint32 i_id, uint32 i_size, void* args );
+extern void setNode(pNode p_node, uint32 id, uint32 i_size, void* node );
+
+/* END:   Modified for PN:1 by zhangxianyi, 2020/5/16 */
+
+extern pNode deepCopyNode(pNode i_node);
 
 
 #ifdef __cplusplus

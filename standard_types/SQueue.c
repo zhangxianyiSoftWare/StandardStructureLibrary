@@ -96,7 +96,7 @@ bool squeue_destory( pQueue pqueue )
 static pQueueNode deepCopyQueueNode( pQueueNode one )
 {
     pQueueNode temp = (pQueueNode)Malloc(sizeof(QueueNode_t));
-    temp = getSListNodeMem2(one->pdata->id, one->pdata->count, one->pdata->pnode);
+    temp = getSListNodeMem2(one->pdata->id, one->pdata->size, one->pdata->pnode);
     //deep copy the base node mem
     //temp->pdata->pnode = deepCopyNode(one->pdata->pnode, sizeof(Task_t));
     return temp;

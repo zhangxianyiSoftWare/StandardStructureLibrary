@@ -44,9 +44,9 @@ int main(int argc,char* argv[])
     task2->task_id = 222;
     task3->task_id = 333;
     
-    pQueueNode one = getQueueNodeMem(1, 1, task);
-    pQueueNode two = getQueueNodeMem(2, 1, task2);
-    pQueueNode three = getQueueNodeMem(3, 1, task3);
+    pQueueNode one = getQueueNodeMem(1, sizeof(Task_t), task);
+    pQueueNode two = getQueueNodeMem(2, sizeof(Task_t), task2);
+    pQueueNode three = getQueueNodeMem(3, sizeof(Task_t), task3);
     
     squeue_add(pqueue, one);
     squeue_add(pqueue, two);

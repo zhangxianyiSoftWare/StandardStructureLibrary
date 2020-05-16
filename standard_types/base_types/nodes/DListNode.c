@@ -4,9 +4,9 @@ const uint8 max_length = 100;
 
 /*****************************************************************************
 *   Prototype    : getDListNodeMem
-*   Description  : get the double list node memery by id ,count pnode
+*   Description  : get the double list node memery by id ,size pnode
 *   Input        : uint32 id
-*                  uint32 count
+*                  uint32 size
 *                  pNode pnode
 *   Output       : None
 *   Return Value : pDListNode
@@ -20,9 +20,9 @@ const uint8 max_length = 100;
 *           Modification : Created function
 *
 *****************************************************************************/
-pDListNode getDListNodeMem( uint32 id, uint32 count, pNode pnode )
+pDListNode getDListNodeMem( uint32 id, uint32 size, pNode pnode )
 {
-    pNode node = getNodeMem(id, count, pnode);
+    pNode node = getNodeMem(id, size, pnode);
     pDListNode temp = (pDListNode)Malloc(sizeof(DListNode_t));
     //assign the temp value
     temp->pdata =node;

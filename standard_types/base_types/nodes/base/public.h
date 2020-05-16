@@ -39,6 +39,17 @@ typedef unsigned short      uint16;
 typedef unsigned int        uint32;
 typedef unsigned long       uint64;
 
+/* BEGIN: Added for PN:1 by zhangxianyi, 2020/5/16 */
+typedef struct _T_METHOD
+{
+    void*   (*func)(uint32 argc,void* argv[]);
+    uint32   argc;
+    void*    argv[];
+}Method_t;
+
+typedef Method_t*   pMethod;
+/* END:   Added for PN:1 by zhangxianyi, 2020/5/16 */
+
 
 
 /*==============================================*

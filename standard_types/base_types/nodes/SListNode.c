@@ -42,7 +42,7 @@ int compare2SListNode( pSListNode one, pSListNode two )
 *****************************************************************************/
 void setSListNode(pSListNode p_l_node, pNode data)
 {
-    setNode(p_l_node->pdata, data->id, data->count, data->pnode);
+    setNode(p_l_node->pdata, data->id, data->size, data->pnode);
     p_l_node->pnext = NULL;
 }
 
@@ -162,9 +162,9 @@ static pSListNode getListNodeMem( pNode data )
 
 /*****************************************************************************
 *   Prototype    : getListNodeMem2
-*   Description  : get the listnode by id,count data
+*   Description  : get the listnode by id,size data
 *   Input        : uint32 id     
-*                  uint32 count  
+*                  uint32 size  
 *                  void* data    
 *   Output       : None
 *   Return Value : pSListNode
@@ -178,9 +178,9 @@ static pSListNode getListNodeMem( pNode data )
 *           Modification : Created function
 *
 *****************************************************************************/
-pSListNode getSListNodeMem2( uint32 id,uint32 count,void* pnode )
+pSListNode getSListNodeMem2( uint32 id,uint32 size,void* pnode )
 {
-    pNode node =  getNodeMem(id, count, pnode);
+    pNode node =  getNodeMem(id, size, pnode);
     pSListNode temp = getListNodeMem(node);
     return temp;
 }

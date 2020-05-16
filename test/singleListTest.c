@@ -38,9 +38,9 @@ int main(int argc,char* argv[])
     task2->task_id = 888;
     task3->task_id = 222;
     
-    pSListNode one = getSListNodeMem2(1, 1, task);
-    pSListNode two = getSListNodeMem2(2, 1, task2);
-    pSListNode three = getSListNodeMem2(3, 1, task3);
+    pSListNode one = getSListNodeMem2(1, sizeof(Task_t), task);
+    pSListNode two = getSListNodeMem2(2, sizeof(Task_t), task2);
+    pSListNode three = getSListNodeMem2(3, sizeof(Task_t), task3);
     
     slist_add(plist, one);
     slist_add(plist, two);
