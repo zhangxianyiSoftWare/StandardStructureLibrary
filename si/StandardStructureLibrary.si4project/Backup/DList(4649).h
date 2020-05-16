@@ -65,7 +65,7 @@ typedef bool (* dlist_oper_pfun)(pDListNode temp,uint32 node_id);
 extern bool dlist_add( pDList pdlist, pDListNode node );
 extern bool dlist_control( pDList pdlist,dlist_oper_pfun func_control,uint32 node_id );
 extern pDList  dlist_create(  );
-extern bool dlist_delById( pDList pdlist, uint32 nid );
+extern bool dlist_del( pDList pdlist, pDListNode del_node );
 extern void dlist_destory( pDList pdlist );
 extern bool dlist_empty( pDList pdlist );
 

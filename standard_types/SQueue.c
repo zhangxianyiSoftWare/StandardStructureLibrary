@@ -120,7 +120,7 @@ static pQueueNode deepCopyQueueNode( pQueueNode one )
 *****************************************************************************/
 void squeue_pop(pQueue pqueue )
 {
-    slist_del(pqueue->psqueue, pqueue->pfrist->pnext);
+    slist_delById(pqueue->psqueue, pqueue->pfrist->pnext->pdata->id);
     pqueue->pfrist = ( pqueue->psqueue->phead);
 }
 
@@ -179,7 +179,7 @@ bool squeue_control( pQueue pqueue ,queue_oper_func func_control,uint32 n_id)
 *           Modification : Created function
 *
 *****************************************************************************/
-pQueueNode getQueueNodeMem( uint32 id, uint32 count, void* args )
+pQueueNode getQueueNodeMem( uint32 id, uint32 size, void* args )
 {
-    return getSListNodeMem2(id, count, args);
+    return getSListNodeMem2(id, size, args);
 }

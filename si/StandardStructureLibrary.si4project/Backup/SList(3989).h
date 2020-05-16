@@ -3,24 +3,24 @@
 *  Copyright (C), 2001-2005, Huawei Tech. Co., Ltd.
 *
 *******************************************************************************
-*  File Name     : DList.h
+*  File Name     : SList.h
 *  Version       : Initial Draft
 *  Author        : zhangxianyi
-*  Created       : 2020/5/9
+*  Created       : 2020/5/2
 *  Last Modified :
-*  Description   : DList.c header file
+*  Description   : SList.c header file
 *  Function List :
 *
 *
 *  History:
 * 
-*       1.  Date         : 2020/5/9
+*       1.  Date         : 2020/5/2
 *           Author       : zhangxianyi
 *           Modification : Created file
 *
 ******************************************************************************/
-#ifndef __DLIST_H__
-#define __DLIST_H__
+#ifndef __SLIST_H__
+#define __SLIST_H__
 
 
 #ifdef __cplusplus
@@ -33,41 +33,41 @@ extern "C"{
 /*==============================================*
  *      include header files                    *
  *----------------------------------------------*/
-#include "./nodes/DListNode.h"
-#include "./nodes/wrap.h"
+#include "./nodes/SListNode.h"
+
 
 
 /*==============================================*
  *      constants or macros define              *
  *----------------------------------------------*/
-typedef struct _T_DLinkList
+typedef struct _T_LinkList
 {
-    pDListNode                phead;   //a node  without pdata 
-    pDListNode                p_pos;   //a node with the last list node
+    pSListNode                phead;
+    pSListNode                p_pos;
     uint32                    list_length;
-}DList_t;
+}SList_t;
 
-typedef DList_t*   pDList;
-//declare a func pointer and control the list
-typedef bool (* dlist_oper_pfun)(pDListNode temp,uint32 node_id);
+typedef SList_t*   pSList;
 
 
 /*==============================================*
  *      project-wide global variables           *
  *----------------------------------------------*/
-
+//declare a func pointer and control the list
+typedef bool (* slist_oper_pfun)(pSListNode temp,uint32 node_id);
 
 
 /*==============================================*
  *      routines' or functions' implementations *
  *----------------------------------------------*/
 
-extern bool dlist_add( pDList pdlist, pDListNode node );
-extern bool dlist_control( pDList pdlist,dlist_oper_pfun func_control,uint32 node_id );
-extern pDList  dlist_create(  );
-extern bool dlist_delById( pDList pdlist, uint32 nid );
-extern void dlist_destory( pDList pdlist );
-extern bool dlist_empty( pDList pdlist );
+extern pSListNode getListNode(pSList plist , uint32 i_id );
+extern bool slist_add( pSList plist, pSListNode node );
+extern pSList slist_create( );
+extern bool slist_del(pSList plist, pSListNode temp );
+extern bool slist_destory( pSList plist );
+extern bool slist_empty( pSList plist );
+extern bool slist_control( pSList plist, slist_oper_pfun func_control,uint32 node_id);
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -76,4 +76,4 @@ extern bool dlist_empty( pDList pdlist );
 #endif /* __cplusplus */
 
 
-#endif /* __DLIST_H__ */
+#endif /* __SLIST_H__ */

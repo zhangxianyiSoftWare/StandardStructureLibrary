@@ -3,24 +3,24 @@
 *  Copyright (C), 2001-2005, Huawei Tech. Co., Ltd.
 *
 *******************************************************************************
-*  File Name     : DList.h
+*  File Name     : SQueue.h
 *  Version       : Initial Draft
 *  Author        : zhangxianyi
-*  Created       : 2020/5/9
+*  Created       : 2020/5/10
 *  Last Modified :
-*  Description   : DList.c header file
+*  Description   : SQueue.c header file
 *  Function List :
 *
 *
 *  History:
 * 
-*       1.  Date         : 2020/5/9
+*       1.  Date         : 2020/5/10
 *           Author       : zhangxianyi
 *           Modification : Created file
 *
 ******************************************************************************/
-#ifndef __DLIST_H__
-#define __DLIST_H__
+#ifndef __SQUEUE_H__
+#define __SQUEUE_H__
 
 
 #ifdef __cplusplus
@@ -33,25 +33,28 @@ extern "C"{
 /*==============================================*
  *      include header files                    *
  *----------------------------------------------*/
-#include "./nodes/DListNode.h"
-#include "./nodes/wrap.h"
+#include "./base_types/SList.h"
+#include "./base_types/nodes/wrap.h"
+
+
 
 
 /*==============================================*
  *      constants or macros define              *
  *----------------------------------------------*/
-typedef struct _T_DLinkList
+typedef SListNode_t     QueueNode_t;
+typedef pSListNode      pQueueNode;
+
+typedef struct _T_SQUEUE
 {
-    pDListNode                phead;   //a node  without pdata 
-    pDListNode                p_pos;   //a node with the last list node
-    uint32                    list_length;
-}DList_t;
+    pQueueNode      pfrist;
+    pQueueNode      plast;
+    pSList          psqueue;
+}SQueue_t;
 
-typedef DList_t*   pDList;
-//declare a func pointer and control the list
-typedef bool (* dlist_oper_pfun)(pDListNode temp,uint32 node_id);
+typedef SQueue_t *   pQueue;
 
-
+typedef bool (*queue_oper_func)(pQueueNode temp,uint32 n_id);
 /*==============================================*
  *      project-wide global variables           *
  *----------------------------------------------*/
@@ -62,12 +65,12 @@ typedef bool (* dlist_oper_pfun)(pDListNode temp,uint32 node_id);
  *      routines' or functions' implementations *
  *----------------------------------------------*/
 
-extern bool dlist_add( pDList pdlist, pDListNode node );
-extern bool dlist_control( pDList pdlist,dlist_oper_pfun func_control,uint32 node_id );
-extern pDList  dlist_create(  );
-extern bool dlist_delById( pDList pdlist, uint32 nid );
-extern void dlist_destory( pDList pdlist );
-extern bool dlist_empty( pDList pdlist );
+extern bool squeue_add( pQueue pqueue, pQueueNode node);
+extern bool squeue_control( pQueue pqueue ,queue_oper_func func_control,uint32 n_id);
+extern pQueue squeue_create(  );
+extern bool squeue_destory( pQueue queue );
+extern void squeue_pop(pQueue pqueue );
+extern pQueueNode getQueueNodeMem( uint32 id, uint32 count, void* args );
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -76,4 +79,4 @@ extern bool dlist_empty( pDList pdlist );
 #endif /* __cplusplus */
 
 
-#endif /* __DLIST_H__ */
+#endif /* __SQUEUE_H__ */

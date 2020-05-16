@@ -1,41 +1,4 @@
 #include "./DList.h"
-
-/*****************************************************************************
-*   Prototype    : getDListNode
-*   Description  : get a double list node by nid
-*   Input        : pDList pdlist
-*                  uint32 nid
-*   Output       : None
-*   Return Value : pDListNode
-*   Calls        : 
-*   Called By    : 
-*
-*   History:
-* 
-*       1.  Date         : 2020/5/9
-*           Author       : zhangxianyi
-*           Modification : Created function
-*
-*****************************************************************************/
-pDListNode getDListNode( pDList pdlist, uint32 nid )
-{
-    //temp pointer 
-    pDListNode node= pdlist->phead->pnext;
-    //if search a node but the list end
-    while( TRUE != equal2DListNode(node, pdlist->p_pos) )
-    {
-        //search a same node
-        if(node->pdata->id == nid)
-        {
-            D_TRACE("for each search node succ\n");
-            return node;
-        }
-        node = node->pnext;
-    }
-    D_TRACE("search node failed \n");
-    return NULL;
-}
-
 /*****************************************************************************
 *   Prototype    : dlist_create
 *   Description  : create a double list 
@@ -209,7 +172,7 @@ bool dlist_add( pDList pdlist, pDListNode node )
 *           Modification : Created function
 *
 *****************************************************************************/
-static bool dlist_del( pDList pdlist, pDListNode del_node )
+bool dlist_del( pDList pdlist, pDListNode del_node )
 {
     if (dlist_empty(pdlist)) 
     {
@@ -241,28 +204,6 @@ static bool dlist_del( pDList pdlist, pDListNode del_node )
     return FALSE;
 }
 
-/*****************************************************************************
-*   Prototype    : dlist_delById
-*   Description  : delete a double list node by node id
-*   Input        : pDList pdlist
-*                  uint32 nid
-*   Output       : None
-*   Return Value : bool
-*   Calls        : 
-*   Called By    : 
-*
-*   History:
-* 
-*       1.  Date         : 2020/5/16
-*           Author       : zhangxianyi
-*           Modification : Created function
-*
-*****************************************************************************/
-bool dlist_delById( pDList pdlist, uint32 nid )
-{
-    pDListNode del_node = getDListNode(pdlist, nid);
-    return dlist_del(pdlist, del_node);
-}
 
 /*****************************************************************************
 *   Prototype    : dlist_control
@@ -283,16 +224,53 @@ bool dlist_delById( pDList pdlist, uint32 nid )
 bool dlist_control( pDList pdlist,dlist_oper_pfun func_control,uint32 node_id )
 {
     //traver the slist 
-    pDListNode temp = pdlist->phead->pnext;
+    pDListNode temp = pdlist->phead;
     while(temp != pdlist->p_pos)
     {
         pDListNode temp_next= temp->pnext;
         //opertion the func
-        func_control(temp,node_id);
+        if (TRUE == func_control(temp,node_id)  )
+        {
+            return TRUE;
+        }
         //change the current temp pos
         temp = temp_next;
     }
-    func_control(pdlist->p_pos,node_id);
     return FALSE;
 }
 
+/*****************************************************************************
+*   Prototype    : getDListNode
+*   Description  : get a double list node by nid
+*   Input        : pDList pdlist
+*                  uint32 nid
+*   Output       : None
+*   Return Value : pDListNode
+*   Calls        : 
+*   Called By    : 
+*
+*   History:
+* 
+*       1.  Date         : 2020/5/9
+*           Author       : zhangxianyi
+*           Modification : Created function
+*
+*****************************************************************************/
+pDListNode getDListNode( pDList pdlist, uint32 nid )
+{
+    //temp pointer 
+    pDListNode node= pdlist->phead->pnext;
+    //if search a node but the list end
+    while( TRUE != equal2DListNode(node, pdlist->p_pos) )
+    {
+        //search a same node
+        if(node->pdata->id == nid)
+        {
+            D_TRACE("for each search node succ\n");
+            return node;
+        }
+        node = node->pnext;
+    }
+    D_TRACE("search node failed \n");
+    return NULL;
+}

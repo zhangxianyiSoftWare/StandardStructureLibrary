@@ -64,7 +64,7 @@ typedef bool (* slist_oper_pfun)(pSListNode temp,uint32 node_id);
 extern pSListNode getListNode(pSList plist , uint32 i_id );
 extern bool slist_add( pSList plist, pSListNode node );
 extern pSList slist_create( );
-extern bool slist_del(pSList plist, pSListNode temp );
+extern bool slist_delById( pSList plist, uint32 nid );
 extern bool slist_destory( pSList plist );
 extern bool slist_empty( pSList plist );
 extern bool slist_control( pSList plist, slist_oper_pfun func_control,uint32 node_id);

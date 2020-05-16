@@ -48,7 +48,7 @@ int main(int argc,char* argv[])
 
     slist_control(plist, printItem2, 3);
     D_TRACE("plist del a list node start\n");    
-    slist_delById(plist, two->pdata->id);
+    slist_del(plist, two);
     D_TRACE("print all list node data  start\n");
     slist_control(plist, printItemAll, 0);
     slist_destory(plist);

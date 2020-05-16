@@ -22,7 +22,7 @@ bool printItem2(pDListNode temp,uint32 node_id)
 
 bool printItemAll(pDListNode temp,uint32 u_id)
 {
-    D_TRACE("print all task data-> %d\n",((pTask)temp->pdata->pnode)->task_id);
+    D_TRACE("print all task data-> %d\n",((pTask)temp->pnext->pdata->pnode)->task_id);
     return FALSE;
 }
 
@@ -34,9 +34,9 @@ int main(int argc,char* argv[])
     pTask task = (pTask)Malloc(sizeof(Task_t));
     pTask task2 = (pTask)Malloc(sizeof(Task_t));
     pTask task3 = (pTask)Malloc(sizeof(Task_t));
-    task->task_id = 111;
-    task2->task_id = 222;
-    task3->task_id = 333;
+    task->task_id = 100;
+    task2->task_id = 888;
+    task3->task_id = 222;
     
     pDListNode one = getDListNodeMem(1, sizeof(Task_t), task);
     pDListNode two = getDListNodeMem(2, sizeof(Task_t), task2);

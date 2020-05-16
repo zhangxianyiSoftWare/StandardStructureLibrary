@@ -1,74 +1,4 @@
-/******************************************************************************
-*
-*  Copyright (C), 2001-2005, Huawei Tech. Co., Ltd.
-*
-*******************************************************************************
-*  File Name     : SList.c
-*  Version       : Initial Draft
-*  Author        : zhangxianyi
-*  Created       : 2020/5/16
-*  Last Modified :
-*  Description   : 
-*  Function List :
-*
-*       1.                getSListNode
-*       2.                slist_add
-*       3.                slist_control
-*       4.                slist_create
-*       5.                slist_del
-*       6.                slist_destory
-*       7.                slist_empty
-*
-*  History:
-* 
-*       1.  Date         : 2020/5/16
-*           Author       : zhangxianyi
-*           Modification : Created file
-*
-******************************************************************************/
 #include "./SList.h"
-/*****************************************************************************
-*   Prototype    : getSListNode
-*   Description  : get a list node by data id
-*   Input        : pSList plist
-*                  uint32 id
-*   Output       : None
-*   Return Value : pSListNode
-*   Calls        : 
-*   Called By    : 
-*
-*   History:
-* 
-*       1.  Date         : 2020/5/2
-*           Author       : zhangxianyi
-*           Modification : Created function
-*
-*****************************************************************************/
-pSListNode getSListNode(pSList plist , uint32 i_id )
-{
-    //temp pointer 
-    pSListNode node= plist->phead->pnext;
-    //if the head 
-    if(node->pdata->id == i_id)
-    {
-        D_TRACE("search node succ\n");
-        return node;
-    }
-    //if search a node but the list end
-    while( TRUE != equal2SListNodes(node, plist->p_pos) )
-    {
-        //search a same node
-        if(node->pdata->id == i_id)
-        {
-            D_TRACE("for each search node succ\n");
-            return node;
-        }
-        node = node->pnext;
-    }
-    D_TRACE("search node failed \n");
-    return NULL;
-}
-
 
 /*****************************************************************************
 *   Prototype    : slist_create
@@ -236,7 +166,7 @@ bool slist_empty( pSList plist )
 *           Modification : Created function
 *
 *****************************************************************************/
-static bool slist_del(pSList plist, pSListNode del_node )
+bool slist_del(pSList plist, pSListNode del_node )
 {
     if (slist_empty(plist)) 
     {
@@ -267,27 +197,47 @@ static bool slist_del(pSList plist, pSListNode del_node )
     return FALSE;
 }
 
+
 /*****************************************************************************
-*   Prototype    : slist_delById
-*   Description  : delete a single list node by node id
+*   Prototype    : getSListNode
+*   Description  : get a list node by data id
 *   Input        : pSList plist
-*                  uint32 nid
+*                  uint32 id
 *   Output       : None
-*   Return Value : bool
+*   Return Value : pSListNode
 *   Calls        : 
 *   Called By    : 
 *
 *   History:
 * 
-*       1.  Date         : 2020/5/16
+*       1.  Date         : 2020/5/2
 *           Author       : zhangxianyi
 *           Modification : Created function
 *
 *****************************************************************************/
-bool slist_delById( pSList plist, uint32 nid )
+pSListNode getSListNode(pSList plist , uint32 i_id )
 {
-    pSListNode del_node = getSListNode(plist, nid);
-    return slist_del(plist, del_node);
+    //temp pointer 
+    pSListNode node= plist->phead->pnext;
+    //if the head 
+    if(node->pdata->id == i_id)
+    {
+        D_TRACE("search node succ\n");
+        return node;
+    }
+    //if search a node but the list end
+    while( TRUE != equal2SListNodes(node, plist->p_pos) )
+    {
+        //search a same node
+        if(node->pdata->id == i_id)
+        {
+            D_TRACE("for each search node succ\n");
+            return node;
+        }
+        node = node->pnext;
+    }
+    D_TRACE("search node failed \n");
+    return NULL;
 }
 
 
