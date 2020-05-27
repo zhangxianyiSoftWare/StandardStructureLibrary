@@ -75,10 +75,32 @@ unsigned int getIncNum(unsigned int size )
     static unsigned int num_count = 0;
     if(num_count <= size)
     {
-        return num_count++;
+        return ++num_count;
     }
     else if(num_count > size)
     {
         num_count = 0;
     }
+}
+
+/*****************************************************************************
+*   Prototype    : Realloc
+*   Description  : system realloc with the memset
+*   Input        : void *mem_address
+*                  unsigned int newsize
+*   Output       : None
+*   Return Value : void *
+*   Calls        : 
+*   Called By    : 
+*
+*   History:
+* 
+*       1.  Date         : 2020/5/20
+*           Author       : zhangxianyi
+*           Modification : Created function
+*
+*****************************************************************************/
+void* Realloc( void *mem_address, unsigned int newsize )
+{
+    return realloc(mem_address,newsize);
 }

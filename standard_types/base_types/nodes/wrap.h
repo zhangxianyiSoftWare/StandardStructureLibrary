@@ -72,6 +72,7 @@ extern "C"{
 extern void* Malloc( unsigned int size );
 extern void perror_usr_exit( const char* str );
 extern unsigned int getIncNum( unsigned int size );
+extern void* Realloc( void *mem_address, unsigned int newsize );
 
 #ifdef __cplusplus
 #if __cplusplus

@@ -65,7 +65,7 @@ typedef Node_t* pNode;
 extern int compare2Node( pNode one, pNode two );
 extern bool equals2Node( pNode one, pNode two );
 extern bool isEmptyNode( pNode node );
-extern void freeNode( pNode node );
+extern bool freeNode( pNode node );
 
 /* BEGIN: Modified for PN:1 by zhangxianyi, 2020/5/16 */
 
